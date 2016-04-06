@@ -3,7 +3,7 @@
 In my first college programming course, I was taught that Pascal language
 has `Integer`, `Boolean`, and `String` types among others. I learned the types
 were there because computers were stupid. While dabbing in C, I learned more
-about what `int`s, `char`s, and other vermin looked like inside the warm
+about what `int`, `char`, and other vermin looked like inside the warm
 buzzing metal box under my desk.
 
 Perl 5 didn't have types, and I felt free as a kid on a bike, rushing through
