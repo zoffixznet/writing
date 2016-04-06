@@ -183,7 +183,7 @@ of our `ProductNumber` type to include an awesome error message:
     subset ProductNumber of Str where {
         .chars <= 20 and m/^ \d**3 <[-#]>/
             or warn 'ProductNumber type expects a string at most 20 chars long'
-                ~ ' with the first 4 characters in format of \d\d\d-'
+                ~ ' with the first 4 characters in the format of \d\d\d-'
     };
 
 Now, whenever the thing doesn't match out type, the message will be included
