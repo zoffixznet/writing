@@ -105,7 +105,7 @@ return a true value.
 With that single line of code, we created a special type and can use it as
 if it were built-in! Not only can we use it to specify the type of variables,
 sub/method parameters and return values, but we can test arbitrary values
-against it with a smartmatch operator, just as we can with built-in types:
+against it with the smartmatch operator, just as we can with built-in types:
 
 
     subset Prime of Int where *.is-prime;
