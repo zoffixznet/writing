@@ -80,9 +80,9 @@ Smileys are `:U`, `:D`, or `:_` appended to the type name. The `:_` is the
 default you get when you don't specify a smiley. The `:U` specifies
 `undefined values only`, while `:D` specifies `defined values only`.
 
-This can be useful to detect whether a method is called on a class or on the
+This can be useful to detect whether a method is called on the class or on the
 instance by having two multies with `:U` and `:D` on the invocant. And if you
-work at the nuclear powerplant, ensuring your rod insertion subroutine never
+work at a nuclear powerplant, ensuring your rod insertion subroutine never
 tries to insert by an undefined amount is also a fine thing, I imagine.
 
 ## Subsets: Tailor-Made Types
