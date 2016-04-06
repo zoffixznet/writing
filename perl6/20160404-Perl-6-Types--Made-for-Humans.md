@@ -10,7 +10,7 @@ Perl 5 didn't have types, and I felt free as a kid on a bike, rushing through
 the wind, going down a slope. No longer did I have to cram my mind into the narrow
 slits computer hardware dictated me to. I had *data* and I could do whatever I
 wanted with it, as long as I didn't get the wrong kind of data. And when I did
-get it, I felt off my bike and skinned my knees.
+get it, I fell off my bike and skinned my knees.
 
 With Perl 6, you can have the cake and eat it too. You can use types or avoid
 them. You can have broad types that accept many kinds of values or narrow ones.
@@ -52,7 +52,7 @@ be more appropriate.
 If you want to drive closer to the metal, Perl 6 also offers a range of
 native types that map into what you'd normally find with, say, `C`. Using these
 may offer performance improvements or lower memory usage. The available types
-are: `int`, `int8`, `int16`, `int32`, `int64`, `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `num`, `num32`, `num64`. The number in the type name
+are: `int`, `int8`, `int16`, `int32`, `int64`, `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `num`, `num32`, and `num64`. The number in the type name
 signifies the available bits, with the numberless types being
 platform-dependent.
 
