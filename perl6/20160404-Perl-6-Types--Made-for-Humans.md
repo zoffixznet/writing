@@ -82,4 +82,133 @@ instance by having two multies with `:U` and `:D` on the invocant. And if you
 work at the nuclear powerplant, ensuring your rod insertion subroutine never
 tries to insert by an undefined amount is also a fine thing, I imagine.
 
-## Subsets and Custom Types
+## Subsets: Tailor-Made Types
+
+Built-in types are cool and all, but most of data programmers work with
+doesn't match them **precisely**. That's where Perl 6 subsets come into play:
+
+```perl6
+    subset Prime of Int where *.is-prime;
+    my Prime $x = 3;
+    $x = 11; # works
+    $x = 4;  # Fails with type mismatch
+```
+
+Using the `subset` keyword, we created type called `Prime` on the fly. It's
+a subset of `Int`, so anything that's non-`Int` doesn't fit the type. We're
+also specifying an additional restriction with the `where` keyword, that
+restriction being that `.is-prime` method called on the given value must
+return a true value.
+
+With that single line of code, we created a special type and can use it as
+if it was built-in! Not only can we use it to specify the type of variables,
+sub/method parameters and return values, but we can test arbitrary values
+against it with a smartmatch operator, just as we can with built-in types:
+
+```perl6
+    subset Prime of Int where *.is-prime;
+    say "It's an Int"  if 'foo' ~~ Int;   # false, it's a Str
+    say "It's a prime" if 31337 ~~ Prime; # true, it's a prime number
+```
+
+Is your "type" a one-off thing you just want to apply to a single variable?
+You don't need to declare a separate `subset` at all! Just use the `where`
+keyword after the variable and you're good to go:
+
+```perl6
+    multi is-a-prime (Int $ where *.is-prime --> 'Yup' ) {}
+    multi is-a-prime (Any                    --> 'Nope') {}
+
+    say is-a-prime 3;     # Yup
+    say is-a-prime 4;     # Nope
+    say is-a-prime 'foo'; # Nope
+```
+
+The `-->` in the signature above is just another way to indicate the return
+type, or in this case a concrete value. So we have two multies with different
+signatures. First one takes an `Int` that is a prime number and the second
+one takes anything else. With exactly zero code in the bodies of our multies
+we wrote a subroutine that can tell you whether a number is prime!!
+
+## Pack it All Up for Reuse
+
+What we've learned so far is pretty sweet, but sweet ain't awesome! Some
+of your custom types you may be using quite frequently. Working at a company
+where product numbers can be at most 20 characters, following some format?
+Perfect! Let's create a subtype just for that:
+
+```perl6
+    subset ProductNumber of Str where { .chars <= 20 and m/^ \d**3 <[-#]>/ };
+    my ProductNumber $num = '333-FOOBAR';
+```
+
+This is great, but we don't want to repeat this subset stuff all over the place.
+Let's shove it into a separate module we can `use`.
+I'll create `/opt/local/Perl6/Company/Types.pm6` because `/opt/local/Perl6`
+is the path included in module search path for all the apps I write for
+this fictional company. Inside this file, we'll have this code:
+
+```perl6
+    unit module Company::Types;
+    my package EXPORT::DEFAULT {
+        subset ProductNumber of Str where { .chars <= 20 and m/^ \d**3 <[-#]>/ };
+    }
+```
+
+We name our module and by default export the subset we're interested in.
+What will our code look like now? It'll look pretty sweet—no, wait, AWESOME—this
+time:
+
+```perl6
+    use Company::Types;
+    my ProductNumber $num1 = '333-FOOBAR'; # succeeds
+    my ProductNumber $num2 = 'meow';       # fails
+```
+
+And so, with a single `use` statement, we extended Perl 6 to provide
+custom-tailored types for us that match perfectly what we want our data to be
+like.
+
+## Decent Error Messages for Subsets
+
+If you've been actually trying out all these examples, you may have noticed
+a minor flaw. The error messages you get are Less Than Awesome:
+
+```
+    Type check failed in assignment to $num2;
+    expected Company::Types::EXPORT::DEFAULT::ProductNumber but got Str ("meow")
+    in block <unit> at test.p6 line 3
+```
+
+When *awesome* is the goal, you certainly have a way to improve those messages.
+Pop open our `Company::Types` file again, and extend the `where` clause
+of our `ProductNumber` type to include an awesome error message:
+
+```perl6
+    subset ProductNumber of Str where {
+        .chars <= 20 and m/^ \d**3 <[-#]>/
+            or warn 'ProductNumber type expects a string at most 20 chars long'
+                ~ ' with the first 4 characters in format of \d\d\d-'
+    };
+```
+
+Now, whenever the thing doesn't match out type, the message will be included
+before the `Type check...` message and the stack trace, providing more info on
+what sort of stuff was expected. You can also call `fail` instead of `warn`
+here, if you wish, in which case the `Type check...` message won't be printed,
+giving you more control over the error the user of your code receives.
+
+## Conclusion
+
+Perl 6 was made for humans to tell computers what to do, not for computers to
+restrict what is possible. Using types catches programming errors and does
+data validation, but you can abstain from using types when you don't want to
+or when the type of data you get is uncertain.
+
+You have the freedom to refine the built-in types to represent exactly the
+data you're working with and you can create a
+[module for common subsets](http://modules.perl6.org/dist/Subsets::Common).
+Importing such a module lets you write code as if those custom types were
+part of Perl 6 itself.
+
+The Perl 6 technology lets you create types that are made for Humans.
