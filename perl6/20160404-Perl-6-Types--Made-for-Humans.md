@@ -129,7 +129,7 @@ keyword after the variable and you're good to go:
 The `-->` in the signature above is just another way to indicate the return
 type, or in this case, a concrete returned value. So we have two multies with different
 signatures. First one takes an `Int` that is a prime number and the second
-one takes anything else. With exactly zero code in the bodies of our multies
+one takes everything else. With exactly zero code in the bodies of our multies
 we wrote a subroutine that can tell you whether a number is prime!!
 
 ## Pack it All Up for Reuse
