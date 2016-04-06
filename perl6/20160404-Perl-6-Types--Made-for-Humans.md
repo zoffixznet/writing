@@ -135,8 +135,8 @@ we wrote a subroutine that can tell you whether a number is prime!!
 
 ## Pack it All Up for Reuse
 
-What we've learned so far is pretty sweet, but sweet ain't awesome! Some
-of your custom types you may end up using quite frequently. Working at a company
+What we've learned so far is pretty sweet, but sweet ain't awesome! You may end up using some
+of your custom types quite frequently. Working at a company
 where product numbers can be at most 20 characters, following some format?
 Perfect! Let's create a subtype just for that:
 
