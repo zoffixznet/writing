@@ -187,7 +187,7 @@ of our `ProductNumber` type to include an awesome error message:
                 ~ ' with the first 4 characters in the format of \d\d\d[-|#]'
     };
 
-Now, whenever the thing doesn't match out type, the message will be included
+Now, whenever the thing doesn't match our type, the message will be included
 before the `Type check...` message and the stack trace, providing more info on
 what sort of stuff was expected. You can also call `fail` instead of `warn`
 here, if you wish, in which case the `Type check...` message won't be printed,
