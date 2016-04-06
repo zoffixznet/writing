@@ -43,7 +43,8 @@ machine-mind types, providing they're the appropriate tool for your data.
 ## Built-In Types
 
 There's a veritable smörgåsbord of [built-in types in Perl 6](http://docs.perl6.org/type.html). If the thing your subroutine does makes
-sense to be done only on integers, use an [`Int`](http://docs.perl6.org/type/Int).
+sense to be done only on integers, use an [`Int`](http://docs.perl6.org/type/Int) for your
+parameters.
 If negatives don't make sense either, limit the range of values even further
 and use a `UInt`—an unsigned `Int`. On the other hand, if you want to handle
 a broader range, [`Numeric`](http://docs.perl6.org/type/Numeric) type may
