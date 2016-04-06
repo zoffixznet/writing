@@ -168,7 +168,7 @@ And so, with a single `use` statement, we extended Perl 6 to provide
 custom-tailored types for us that match perfectly what we want our data to be
 like.
 
-## Decent Error Messages for Subsets
+## Awesome Error Messages for Subsets
 
 If you've been actually trying out all these examples, you may have noticed
 a minor flaw. The error messages you get are Less Than Awesome:
