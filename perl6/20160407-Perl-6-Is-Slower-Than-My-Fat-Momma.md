@@ -87,7 +87,7 @@ The first run was a full run that pre-compiled my module, but the second one alr
 pre-compiled Foo.pm6 and the parse stage went down from
 4.262 seconds to 0.413: a 1031% start-up improvement.
 
-Now, modules you install from the ecosystem get
+Modules you install from [the ecosystem](http://modules.perl6.org/) get
 pre-compiled during installation, so you don't have to
 worry about them. When writing your own modules, however,
 they will be automatically re-pre-compiled every time you change their
