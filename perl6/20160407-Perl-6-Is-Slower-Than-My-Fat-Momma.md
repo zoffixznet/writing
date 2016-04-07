@@ -1,4 +1,4 @@
-# Perl 6 Is Slower Than Yo' Fat Momma!
+# Perl 6 Is Slower Than My Fat Momma!
 
 I notice several groups of people:
 folks who wish Perl 6's performance isn't mentioned;
@@ -80,7 +80,7 @@ automagically pre-compiles modules, as can be seen here:
     Stage mbc        :   0.000
     Stage moar       :   0.000
 
-The first run was a full run that pre-compiled my module
+The first run was a full run that pre-compiled my large module
 Foo.pm6 I included, but the second one already had the
 pre-compiled Foo.pm6 and the parse stage went down from
 4.262 seconds to 0.413: a nearly 4 second start-up gain.
@@ -88,7 +88,7 @@ pre-compiled Foo.pm6 and the parse stage went down from
 Now, modules you install from the ecosystem get
 pre-compiled during installation, so you don't have to
 worry about them. When writing your own modules, however,
-they will be re-pre-compiled every time you change their
+they will be automatically re-pre-compiled every time you change their
 code. If you make a change before each time you run
 the program, it's easy to get the impression it's not
 performing well, even though the compilation penalty
@@ -101,18 +101,67 @@ Just keep that in mind.
 Perl 6 has several "native" machine types that can offer
 performance boosts in some cases:
 
-my $x = 0;
-for 0..30000000 { $x++; }; say now - INIT now
-# OUTPUT:
-    11.52144109
+    my Int $x = 0;
+    $x++ while $x < 30000000;
+    say now - INIT now;
 
-<ZoffixW> m: my int $x = 0; for 0..30000000 { $x++; }; say now - INIT now
-<camelia> rakudo-moar 61d231: OUTPUT«8.6967113␤»
+    # OUTPUT:
+    # 4.416726
 
+    my int $x = 0;
+    $x++ while $x < 30000000;
+    say now - INIT now;
+
+    # OUTPUT:
+    # 0.1711660
+
+That's a 2580% boost we achieved all by simply switching to
+a native `int` type.
+    
 The available types are: `int`, `int8`, `int16`, `int32`, `int64`,
 `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `num`, `num32`,
 and `num64`. The number in the type name signifies the available
 bits, with the numberless types being platform-dependent.
 
-They aren't a magical solution to every problem, but keep them
-in mind and look out for cases where they can be used.
+They aren't a magical solution to every problem, and won't offer huge
+improvements in every case, but keep them in mind and look out
+for cases where they can be used.
+
+## Concurrency
+
+Perl 6 makes it extremely easy to utilize multi-core CPUs with
+[high-level tools](http://docs.perl6.org/language/concurrency#High-level_APIs)
+like Promises, Supplies, and Channels. Where language XYZ is fast,
+but lacks ease of concurrency, Perl 6 can end up the winner in peformance
+by distributing work over multiple cores.
+
+I won't go into details; you can consult
+[the documentation](http://docs.perl6.org/language/concurrency)
+or watch [my talk that mentions them](https://youtu.be/paa3niF72Nw?t=32m14s)
+[[slides](http://tpm2016.zoffix.com/#/33)]. I will show an example, though:
+
+    await (
+        start { say "One!";   sleep 1; },
+        start { say "Two!";   sleep 1; },
+        start { say "Three!"; sleep 1; },
+    );
+    say now - INIT now;
+
+    # OUTPUT:
+    # One!
+    # Three!
+    # Two!
+    # 1.00665192
+
+We use `start` keyword to create three
+[Promises](http://docs.perl6.org/type/Promise) and then use the
+`await` keyword to wait for all of them to complete. Inside our
+Promises, we print out a string and then sleep for at least one second.
+
+The result? Our program has three operations that take
+at least 1 second each, yet the total runtime was
+just above 1 second. From the output, we can
+see it's not in order, suggesting code was executed
+on multiple cores.
+
+

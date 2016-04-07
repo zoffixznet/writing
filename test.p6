@@ -1,3 +1,4 @@
-use Company::Types;
-my ProductNumber $num1 = '333-FOOBAR'; # succeeds
-my ProductNumber $num2 = 'meow'; # fails
+await (
+    start { sleep .5; };
+    start { sleep 1; };
+);
