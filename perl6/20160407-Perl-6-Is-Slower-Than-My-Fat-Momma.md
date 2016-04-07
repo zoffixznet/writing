@@ -41,12 +41,12 @@ remains to see whether theory will match reality,
 but looking through numerous optimization commits
 made since the start of 2016, a few gems stand out:
 
-* [Make Parameter.sigil about 20x faster](https://github.com/rakudo/rakudo/commit/add25c771c5b82ab0ce5bd3f6c0e87a6e9334a2d)
-* [Make Blob:D eq/ne Blob:D about 250x faster ](https://github.com/rakudo/rakudo/commit/1969a42525f69d930735009a1dbbc39f3e910888)
-* [Make prefix ~^ Blob:D about 300x faster](https://github.com/rakudo/rakudo/commit/fb74abc314efa2dcc7f4866f1378f40a17410a50)
-* [Make ~|, ~& and ~^ about 600x faster](https://github.com/rakudo/rakudo/commit/138441c97df2fc0603047b589e1fa71a126185f3)
-* [Make int @a.append(1) 1800x faster](https://github.com/rakudo/rakudo/commit/c70a18e9cd4aff36c2c7a6b8f9a62770c8c533b3)
-* [Make Blob:D cmp/lt/gt/le/ge Blob:D 3800x faster](https://github.com/rakudo/rakudo/commit/e3342da00e7cfca618acbab37b90f13a133c73f6)
+* [Make Parameter.sigil about **20x faster**](https://github.com/rakudo/rakudo/commit/add25c771c5b82ab0ce5bd3f6c0e87a6e9334a2d)
+* [Make Blob:D eq/ne Blob:D about **250x faster**](https://github.com/rakudo/rakudo/commit/1969a42525f69d930735009a1dbbc39f3e910888)
+* [Make prefix ~^ Blob:D about **300x faster**](https://github.com/rakudo/rakudo/commit/fb74abc314efa2dcc7f4866f1378f40a17410a50)
+* [Make ~|, ~& and ~^ about **600x faster**](https://github.com/rakudo/rakudo/commit/138441c97df2fc0603047b589e1fa71a126185f3)
+* [Make int @a.append(1) **1800x faster**](https://github.com/rakudo/rakudo/commit/c70a18e9cd4aff36c2c7a6b8f9a62770c8c533b3)
+* [Make Blob:D cmp/lt/gt/le/ge Blob:D **3800x faster**](https://github.com/rakudo/rakudo/commit/e3342da00e7cfca618acbab37b90f13a133c73f6)
 
 ## What can ***I*** do about it?
 
