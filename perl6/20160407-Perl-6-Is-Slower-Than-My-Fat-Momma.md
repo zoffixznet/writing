@@ -83,8 +83,7 @@ a large Foo.pm6 module I'm including:
     Stage mbc        :   0.000
     Stage moar       :   0.000
 
-The first run was a full run that pre-compiled my large module
-Foo.pm6 I included, but the second one already had the
+The first run was a full run that pre-compiled my module, but the second one already had the
 pre-compiled Foo.pm6 and the parse stage went down from
 4.262 seconds to 0.413: a nearly 4 second start-up gain.
 
