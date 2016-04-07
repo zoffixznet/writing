@@ -48,11 +48,13 @@ made since the start of 2016, a few gems stand out:
 * [Make int @a.append(1) **1800x faster**](https://github.com/rakudo/rakudo/commit/c70a18e9cd4aff36c2c7a6b8f9a62770c8c533b3)
 * [Make Blob:D cmp/lt/gt/le/ge Blob:D **3800x faster**](https://github.com/rakudo/rakudo/commit/e3342da00e7cfca618acbab37b90f13a133c73f6)
 
+Thus, the answer is we're working on it... and we're making good progress.
+
 ## What can ***I*** do about it?
 
 I'll mention three main things to keep in mind when trying
 to get your code to perform better:
-pre-compilation, native types, and of course concurrency.
+pre-compilation, native types, and of course, concurrency.
 
 #### Pre-Compilation
 
