@@ -215,7 +215,7 @@ Perl 6's pre-compilation of modules, support of native types, and
 superb concurrency primitives you can substantially improve the performance
 of your code *right now.*
 
-Some may disagree Perl 6 is slow, some may find it faster than another
+Some may disagree that Perl 6 is slow, some may find it faster than another
 language, and some may say Perl 6 is slower than my fat momma.
 
 We'll see what years ahead will bring us.
