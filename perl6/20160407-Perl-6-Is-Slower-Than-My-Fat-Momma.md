@@ -93,7 +93,7 @@ pre-compiled during installation, so you don't have to
 worry about them. When writing your own modules, however,
 they will be automatically re-pre-compiled every time you change their
 code. If you make a change before each time you run
-the program, it's easy to get the impression it's not
+the program, it's easy to get the impression your code is not
 performing well, even though the compilation penalty
 won't affect the program once you're done tinkering with it.
 
