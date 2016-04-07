@@ -15,7 +15,7 @@ third group... well, this post isn't about them.
 ## Why is it slow?
 
 The simplest answer: Perl 6's brand new. It's not
-the next Perl, it's a brand new language in the Perl family. The
+the next Perl, but a brand new language in the Perl family. The
 *language spec* was finished less than 4
 months ago (Dec 25, 2015). While *some* optimization
 has been done, the core team focused on getting
