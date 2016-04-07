@@ -137,7 +137,7 @@ like Promises, Supplies, and Channels. Where language XYZ is fast,
 but lacks ease of concurrency, Perl 6 can end up the winner in peformance
 by distributing work over multiple cores.
 
-I won't go into details; you can consult
+I won't go into details—you can consult
 [the documentation](http://docs.perl6.org/language/concurrency)
 or watch [my talk that mentions them](https://youtu.be/paa3niF72Nw?t=32m14s)
 ([slides](http://tpm2016.zoffix.com/#/33)). I will show an example, though:
