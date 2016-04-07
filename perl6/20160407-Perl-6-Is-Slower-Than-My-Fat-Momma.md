@@ -85,7 +85,7 @@ a large Foo.pm6 module I'm including:
     Stage moar       :   0.000
 
 The first run was a full run that pre-compiled my module, but the second one already had the
-pre-compiled Foo.pm6 and the parse stage went down from
+pre-compiled Foo.pm6 available and the parse stage went down from
 4.262 seconds to 0.413: a 1031% start-up improvement.
 
 Modules you install from [the ecosystem](http://modules.perl6.org/) get
