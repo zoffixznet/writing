@@ -38,7 +38,7 @@ start to even out.
 Now that we got things right, we can focus on making
 them fast. Perl 6 uses a modern compiler, so
 *in theory* it can be optimized quite a lot. It
-remains to see whether theory will match reality,
+remains to be seen whether theory will match reality,
 but looking through numerous optimization commits
 made since the start of 2016, a few gems stand out:
 
