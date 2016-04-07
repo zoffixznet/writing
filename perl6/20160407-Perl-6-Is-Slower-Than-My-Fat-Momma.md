@@ -29,8 +29,8 @@ are much faster in other languages. However, the
 Perl 6 one-liner loads the comprehensive object
 model, list tools, set tools, large arsenal of async
 and concurrency tools... When in a real program you have to load
-a dozen of modules in language XYZ, but still stay
-with bare Perl 6, that's when performance will
+a dozen of modules in language XYZ, but can still stay
+with bare Perl 6 to get same features, that's when performance will
 start to even out.
 
 ## What can ***you*** do about it?
