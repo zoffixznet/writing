@@ -5,7 +5,7 @@ folks who wish Perl 6's performance weren't mentioned;
 folks who are confused about Perl 6's perfomance;
 folks who gleefully chuckle at Perl 6's performance,
 reassured the threat to their favourite language XYZ
-hasn't yet arrived.
+hasn't arrived yet.
 
 So I'm here to talk about the elephant in the room
 and get the first group out of hiding,
@@ -14,7 +14,8 @@ third group... well, this post isn't about them.
 
 ## Why is it slow?
 
-The simplest answer: Perl 6's brand new. The 
+The simplest answer: Perl 6's brand new. It's not
+the next Perl, it's a brand new language in the Perl family. The
 *language spec* was finished less than 4
 months ago (Dec 25, 2015). While *some* optimization
 has been done, the core team focused on getting
