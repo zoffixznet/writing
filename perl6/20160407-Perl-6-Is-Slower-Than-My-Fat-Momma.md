@@ -206,7 +206,7 @@ choice depends on the type of application you're writing.
 ## Conclusion
 
 Perl 6 is a brand new product, so it doesn't make sense to compare it
-against products that existed for decades just yet. It is being
+against products that existed for decades. It is being
 actively improved and, at least in theory, it should become
 performant on the level similar to other competing languages.
 
