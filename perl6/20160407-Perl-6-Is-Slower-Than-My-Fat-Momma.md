@@ -118,7 +118,7 @@ performance boosts in some cases:
     # OUTPUT:
     # 0.1711660
 
-That's a 2580% boost we achieved all simply switching our counter to
+That's a 2580% boost we achieved by simply switching our counter to
 a native `int` type.
     
 The available types are: `int`, `int8`, `int16`, `int32`, `int64`,
