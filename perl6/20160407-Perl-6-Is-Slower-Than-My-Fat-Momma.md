@@ -117,7 +117,7 @@ performance boosts in some cases:
     # OUTPUT:
     # 0.1711660
 
-That's a 2580% boost we achieved all by simply switching to
+That's a 2580% boost we achieved all simply switching our counter to
 a native `int` type.
     
 The available types are: `int`, `int8`, `int16`, `int32`, `int64`,
@@ -132,7 +132,7 @@ for cases where they can be used.
 ## Concurrency
 
 Perl 6 makes it extremely easy to utilize multi-core CPUs with
-[high-level tools](http://docs.perl6.org/language/concurrency#High-level_APIs)
+[high-level APIs](http://docs.perl6.org/language/concurrency#High-level_APIs)
 like Promises, Supplies, and Channels. Where language XYZ is fast,
 but lacks ease of concurrency, Perl 6 can end up the winner in peformance
 by distributing work over multiple cores.
