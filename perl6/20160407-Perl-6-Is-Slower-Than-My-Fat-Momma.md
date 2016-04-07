@@ -166,4 +166,55 @@ just above 1 second. From the output, we can
 see it's not in order, suggesting code was executed
 on multiple cores.
 
+We can crank it up a notch and use a `HyperSeq` to transform ordinary
+code into concurrent code with a single method call:
+
+    for (1..4).race( batch => 1 ) {
+        say "Doing $_";
+        sleep 1;
+    }
+    say "Code took {now - INIT now} seconds to run";
+
+    # OUTPUT:
+    # Doing 1
+    # Doing 3
+    # Doing 2
+    # Doing 4
+    # Code took 1.0090415 seconds to run
+
+We had a list of 4 items to work with. We looped over each of
+them and performed an expensive operation (in this case, a 1-second
+`sleep`). We then simply called the
+[`.race` method](http://docs.perl6.org/routine/race) on our list of
+4 items to get a Hyper Sequence. Our loop remains the same, but it's
+now executing in a concurrent manner, as can be seen from the output:
+items out of order and our total runtime was just over 1 second,
+despite a total of 4 seconds of sleep.
+
+## Let's See Some Benchmark
+
+I won't show you any. There's hardly any sense in benchmarking *entire
+languages.* Clever one-liners can be written to support
+one point of view or another, but they simply abstract a problem into
+a simplistic singularity. Languages are different and they have
+vastly different toolkits to solve similar problems.
+
+## Conclusion
+
+Perl 6 is a brand new product, so it doesn't make sense to compare it
+against products that existed for decades just yet. It is being
+actively improved and, at least in theory, it should become
+performant on the level similar to other competing languages.
+
+You don't have to wait for that to happen, however, thanks to
+Perl 6's pre-compilation of modules, support of native types, and
+superb concurrency primitives.
+
+Some may disagree Perl 6 is slow, some may find it faster than another
+language, and some may say Perl 6 is slower than my fat momma.
+
+We'll see what years ahead will bring us.
+
+
+
 
