@@ -60,7 +60,8 @@ pre-compilation, native types, and of course, concurrency.
 
 Currently, a large chunk of slowness you may notice comes
 from parsing and compiling code. Luckily, Perl 6
-automagically pre-compiles modules, as can be seen here:
+automagically pre-compiles modules, as can be seen here, with
+a large Foo.pm6 module I'm including:
 
     $ perl6 -I. -MFoo --stagestats -e ''
     Stage start      :   0.000
