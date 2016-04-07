@@ -25,7 +25,7 @@ polished product at this time.
 
 The second part of the answer: Perl 6 is big.
 It's easy to come up with a couple of one-liners that
-are much faster in other languages. However, the
+are much faster in other languages. However, a
 Perl 6 one-liner loads the comprehensive object
 model, list tools, set tools, large arsenal of async
 and concurrency tools... When in a real program you have to load
