@@ -1,7 +1,7 @@
 # Perl 6 Is Slower Than My Fat Momma!
 
 I notice several groups of people:
-folks who wish Perl 6's performance isn't mentioned;
+folks who wish Perl 6's performance weren't mentioned;
 folks who are confused about Perl 6's perfomance;
 folks who gleefully chuckle at Perl 6's performance,
 reassured the threat to their favourite language XYZ
@@ -10,7 +10,7 @@ hasn't yet arrived.
 So I'm here to talk about the elephant in the room
 and get the first group out of hiding,
 I'll explain things to the second group, and to the
-third group I'll loudly shout "yes, we know!"
+third group... well, this post isn't about them.
 
 ## Why is it slow?
 
