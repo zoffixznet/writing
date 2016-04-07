@@ -192,13 +192,16 @@ now executing in a concurrent manner, as can be seen from the output:
 items out of order and our total runtime was just over 1 second,
 despite a total of 4 seconds of sleep.
 
-## Let's See Some Benchmark
+## Let's See Some Benchmarks
 
 I won't show you any. There's hardly any sense in benchmarking *entire
 languages.* Clever one-liners can be written to support
 one point of view or another, but they simply abstract a problem into
 a simplistic singularity. Languages are different and they have
-vastly different toolkits to solve similar problems.
+vastly different tool kits to solve similar problems. Would you choose
+code completes in 1 second that takes you 40 minutes to write or code
+that completes in 2 seconds, yet takes you 10 minutes to write? The
+choice depends on the type of application you're writing.
 
 ## Conclusion
 
