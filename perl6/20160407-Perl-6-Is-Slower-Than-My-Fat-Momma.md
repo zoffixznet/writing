@@ -8,13 +8,13 @@ reassured the threat to their favourite language XYZ
 hasn't arrived yet.
 
 So I'm here to talk about the elephant in the room
-and get the first group out of hiding,
+and get the first group out of hiding and more at ease,
 I'll explain things to the second group, and to the
 third group... well, this post isn't about them.
 
 ## Why is it slow?
 
-The simplest answer: Perl 6's brand new. It's not
+The simplest answer: Perl 6 is brand new. It's not
 the next Perl, but a brand new language in the Perl family. The
 *language spec* was finished less than 4
 months ago (Dec 25, 2015). While *some* optimization
@@ -30,8 +30,7 @@ Perl 6 one-liner loads the comprehensive object
 model, list tools, set tools, large arsenal of async
 and concurrency tools... When in a real program you have to load
 a dozen of modules in language XYZ, but can still stay
-with bare Perl 6 to get same features, that's when performance will
-start to even out.
+with bare Perl 6 to get same features, that's when performance starts to even out.
 
 ## What can ***you*** do about it?
 
@@ -40,7 +39,7 @@ them fast. Perl 6 uses a modern compiler, so
 *in theory* it can be optimized quite a lot. It
 remains to be seen whether theory will match reality,
 but looking through numerous optimization commits
-made since the start of 2016, a few gems stand out:
+made since the start of 2016, many stand out by the boosts they bring in:
 
 * [Make Parameter.sigil about **20x faster**](https://github.com/rakudo/rakudo/commit/add25c771c5b82ab0ce5bd3f6c0e87a6e9334a2d)
 * [Make Blob:D eq/ne Blob:D about **250x faster**](https://github.com/rakudo/rakudo/commit/1969a42525f69d930735009a1dbbc39f3e910888)
@@ -57,7 +56,7 @@ I'll mention three main things to keep in mind when trying
 to get your code to perform better:
 pre-compilation, native types, and of course, concurrency.
 
-#### Pre-Compilation
+### Pre-Compilation
 
 Currently, a large chunk of slowness you may notice comes
 from parsing and compiling code. Luckily, Perl 6
@@ -73,7 +72,7 @@ a large Foo.pm6 module I'm including:
     Stage mast       :   0.013
     Stage mbc        :   0.000
     Stage moar       :   0.000
-    
+
     $ perl6 -I. -MFoo --stagestats -e ''
     Stage start      :   0.000
     Stage parse      :   0.413
@@ -99,7 +98,7 @@ won't affect the program once you're done tinkering with it.
 
 Just keep that in mind.
 
-## Native Types
+### Native Types
 
 Perl 6 has several "native" machine types that can offer
 performance boosts in some cases:
@@ -120,7 +119,7 @@ performance boosts in some cases:
 
 That's a 2580% boost we achieved by simply switching our counter to
 a native `int` type.
-    
+
 The available types are: `int`, `int8`, `int16`, `int32`, `int64`,
 `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `num`, `num32`,
 and `num64`. The number in the type name signifies the available
@@ -130,7 +129,7 @@ They aren't a magical solution to every problem, and won't offer huge
 improvements in every case, but keep them in mind and look out
 for cases where they can be used.
 
-## Concurrency
+### Concurrency
 
 Perl 6 makes it extremely easy to utilize multi-core CPUs using
 [high-level APIs](http://docs.perl6.org/language/concurrency#High-level_APIs)
@@ -156,7 +155,7 @@ or watch [my talk that mentions them](https://youtu.be/paa3niF72Nw?t=32m14s)
     # Two!
     # 1.00665192
 
-We use `start` keyword to create three
+We use the `start` keyword to create three
 [Promises](http://docs.perl6.org/type/Promise) and then use the
 `await` keyword to wait for all of them to complete. Inside our
 Promises, we print out a string and then sleep for at least one second.
@@ -167,7 +166,7 @@ just above 1 second. From the output, we can
 see it's not in order, suggesting code was executed
 on multiple cores.
 
-We can crank it up a notch and use a `HyperSeq` to transform ordinary
+That was quite easy, but we can crank it up a notch and use a `HyperSeq` to transform ordinary
 code into concurrent code with a single method call:
 
     for (1..4).race( batch => 1 ) {
@@ -185,12 +184,16 @@ code into concurrent code with a single method call:
 
 We had a list of 4 items to work with. We looped over each of
 them and performed an expensive operation (in this case, a 1-second
-`sleep`). We then simply called the
+`sleep`). To modify our code to be faster, we simply called the
 [`.race` method](http://docs.perl6.org/routine/race) on our list of
 4 items to get a Hyper Sequence. Our loop remains the same, but it's
 now executing in a concurrent manner, as can be seen from the output:
-items out of order and our total runtime was just over 1 second,
+items are out of order and our total runtime was just over 1 second,
 despite a total of 4 seconds of sleep.
+
+If the default batch size of `64` is suitable for you, it means you can
+go from a plain loop to a concurrent loop by simply typing 5 characters
+(`. r a c e`).
 
 ## Let's See Some Benchmarks
 
@@ -206,11 +209,11 @@ choice depends on the type of application you're writing.
 ## Conclusion
 
 Perl 6 is a brand new product, so it doesn't make sense to compare it
-against products that existed for decades. It is being
+against software that existed for decades. It is being
 actively improved and, at least in theory, it should become
 performant on the level similar to other competing languages.
 
-You don't have to wait for that to happen, however, thanks to
+You don't have to wait for that to happen, however. Thanks to
 Perl 6's pre-compilation of modules, support of native types, and
 superb concurrency primitives you can substantially improve the performance
 of your code *right now.*
@@ -218,8 +221,4 @@ of your code *right now.*
 Some may disagree that Perl 6 is slow, some may find it faster than another
 language, and some may say Perl 6 is slower than my fat momma.
 
-We'll see what years ahead will bring us.
-
-
-
-
+Who's to decide for you? Only you yourself can.
