@@ -149,12 +149,45 @@ instantiation or method/sub call, a fatal error will be thrown.
     say $obj.sqrt; # 5
     say $obj.zop;  # Foo
 
-First, this is NOT the way to apply Roles. They simply [get punned](http://docs.perl6.org/language/objects#Automatic_Role_Punning) and applied as a class.
+First a note: this is NOT the way to apply Roles; you should use `does`. When
+you use `is`, they simply [get punned](http://docs.perl6.org/language/objects#Automatic_Role_Punning) and applied as a class.
 
 Using `is` keyword followed by a Type or Class inherits from them. The `Meow`
 class constructed above is itself empty, but due to inherting from `Int` type
 takes an integer and provides [all of `Int` methods](http://docs.perl6.org/type/Int). We also get method `zop`, which is provided by `Foo` class in
 this case. And despite both roles providing it too, we don't get any errors,
-becose those roles got punned.
+because those roles got punned.
+
+## `does`
+
+Let's try out our previous example, but this type compose the roles correctly,
+using the `does` trait:
+
+    role  Foo { method zop { 'Foo' } }
+    role  Bar { method zop { 'Bar' } }
+    class Mer { method zop { 'Mer' } }
+
+    class Meow is Int does Foo does Bar is Mer { };
+
+    # OUTPUT:
+    # ===SORRY!=== Error while compiling
+    # Method 'zop' must be resolved by class Meow because it exists in multiple roles (Bar, Foo)
+
+This time the composition correctly fails. The `does` trait is what you use
+to compose roles.
+
+## `of`
+
+    subset Primes of Int where *.is-prime;
+    my Array of Primes $foo;
+    $foo.push: 2; # success
+    $foo.push: 4; # fail, not a prime
+
+The `of` trait gets an honourable mention. It's used in
+[creation of subsets](http://blogs.perl.org/users/zoffix_znet/2016/04/perl-6-types-made-for-humans.html)
+or, for example, restricting elements of an array to a particular type.
 
 # PART II: Custom Traits
+
+Custom traits obviously pack a lot of power into a few characters... wouldn't
+it be awesome if you could create your own? It wouldn't be Perl if you couldn't!
