@@ -31,9 +31,9 @@ simply breaks up strings into characters:
     # foobar| mooba|r 駱駝道b|ar
 
 Without arguments, you get individual characters. Supply an integer and you'll
-get get a list of strings at most that many characters long, receiving a
-shorter string, when there are not enough characters left. This method is
-also about 30x faster than using a regex for this job.
+get a list of strings at most that many characters long, receiving a
+shorter string when there are not enough characters left. This method is
+also about 30x faster than using a regex for the job.
 
 ## Limits
 
@@ -111,7 +111,7 @@ use `comb`... we'll just ask it to give us [`Match` objects](http://docs.perl6.o
     # OUTPUT:
     # moo => meow, ping => pong
 
-This is slightly wordier than Perl 5's version. Let's unpack what it's doing:
+Let's unpack that the code is doing:
 it does same old `.comb` looking for a sequence of word characters, followed by
 the `=` character, followed by another sequence of word characters. We use
 `()` parentheses to capture both of those sequences in separate captures. Also,
