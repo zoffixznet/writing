@@ -141,3 +141,11 @@ this, without a `.comb`:
 
     # OUTPUT:
     # moo => meow, ping => pong
+
+## Conclusion
+
+We've learned how break up a string into bits any way we want to. Be it one or more characters. Be it simple strings or regex matches. Be it partial captures
+or multiple ones. You can use `comb` for all. Combined with [`.rotor`](http://blogs.perl.org/users/zoffix_znet/2016/01/perl-6-rotor-the-king-of-list-manipulation.html), the power is limitless.
+
+The other thing we also are certain of: nothing beats Perl 5's concise
+`my %things = $text =~ /(key)...(value)/g;`
