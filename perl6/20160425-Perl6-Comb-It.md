@@ -13,7 +13,7 @@ programmer, with Perl 5 background, there might be some confusion. First,
 using several captures doesn't result in nice hashes right off the bat. Second,
 you don't get strings, you get [`Match` objects](http://docs.perl6.org/type/Match).
 
-While `Match`es are fine, let's look at a tool more suited for the job:
+While Matches are fine, let's look at a tool more suited for the job:
 [The `comb`](http://docs.perl6.org/routine/comb)
 
 <img src="stock/20160425-Perl6-Comb-It.jpg" height=400>
@@ -117,11 +117,11 @@ the `=` character, followed by another sequence of word characters. We use
 `()` parentheses to capture both of those sequences in separate captures. Also,
 notice we added `:match` argument to `.comb`, this causes it to return a list
 of `Match` objects instead of strings. Next, we use two hyper operators (») to
-first convert the `Match`es to [`Slip`s](http://docs.perl6.org/type/Slip), which gives us a list of captures, but they're still `Match` objects, which is
+first convert the `Matches` to [`Slips`](http://docs.perl6.org/type/Slip), which gives us a list of captures, but they're still `Match` objects, which is
 why we convert them to [`Str`](http://docs.perl6.org/type/Str) as well.
 
 An even more verbose, but much clearer method is to use named captures instead
-and then `.map` them into [`Pair`s](http://docs.perl6.org/type/Pair):
+and then `.map` them into [`Pairs`](http://docs.perl6.org/type/Pair):
 
     my %things = 'moo=meow ping=pong'
         .comb(/$<key>=\w+ '=' $<value>=\w+/, :match)
