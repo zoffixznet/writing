@@ -111,7 +111,7 @@ use `comb`... we'll just ask it to give us [`Match` objects](http://docs.perl6.o
     # OUTPUT:
     # moo => meow, ping => pong
 
-Let's unpack that the code is doing:
+Let's break that down:
 it does same old `.comb` looking for a sequence of word characters, followed by
 the `=` character, followed by another sequence of word characters. We use
 `()` parentheses to capture both of those sequences in separate captures. Also,
