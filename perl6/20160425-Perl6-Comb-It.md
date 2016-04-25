@@ -120,7 +120,7 @@ of `Match` objects instead of strings. Next, we use two hyper operators (») to
 first convert the `Matches` to [`Slips`](http://docs.perl6.org/type/Slip), which gives us a list of captures, but they're still `Match` objects, which is
 why we convert them to [`Str`](http://docs.perl6.org/type/Str) as well.
 
-An even more verbose, but much clearer method is to use named captures instead
+An even more verbose, but much clearer, method is to use named captures instead
 and then `.map` them into [`Pairs`](http://docs.perl6.org/type/Pair):
 
     my %things = 'moo=meow ping=pong'
