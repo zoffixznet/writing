@@ -20,7 +20,7 @@ While Matches are fine, let's look at a tool more suited for the job:
 
 ## Plain 'Ol Characters
 
-You can use `comb` as a subroutine or as a method. At its basic form, `comb`
+You can use `comb` as a subroutine or as a method. In its basic form, `comb`
 simply breaks up strings into characters:
 
     'foobar moobar 駱駝道bar'.comb.join('|').say;
