@@ -131,7 +131,8 @@ and then `.map` them into [`Pairs`](http://docs.perl6.org/type/Pair):
     # OUTPUT:
     # moo => meow, ping => pong
 
-Lastly, an astute reader will rember I mentioned simply using Perl 5's method
+Lastly, an astute reader will rember I mentioned at the beginning that
+simply using Perl 5's method
 will result in a list of `Match` objects... the same `Match` objects we're
 asking `.comb` to give us above. Thus, you can also write the above code like
 this, without a `.comb`:
