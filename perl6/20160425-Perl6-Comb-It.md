@@ -112,7 +112,7 @@ use `comb`... we'll just ask it to give us [`Match` objects](http://docs.perl6.o
     # moo => meow, ping => pong
 
 Let's break that code down:
-it does same old `.comb` looking for a sequence of word characters, followed by
+it uses the same old `.comb` to look for a sequence of word characters, followed by
 the `=` character, followed by another sequence of word characters. We use
 `()` parentheses to capture both of those sequences in separate captures. Also,
 notice we added `:match` argument to `.comb`, this causes it to return a list
