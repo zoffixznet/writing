@@ -5,8 +5,8 @@ In Perl 5, I always appreciated the convenience of constructs like these two:
     my @things = $text =~ /thing/g;
     my %things = $text =~ /(key)...(value)/g;
 
-You take some nice, predictable text, pop a regex next to it, and BOOM! Get
-a nice list of things or use several captures and or a pretty hash. Magical!
+You take some nice, predictable text, pop a regex next to it, and BOOM! You get
+a nice list of things or a pretty hash. Magical!
 
 There are some similarities to this construct in Perl 6, but if you're a new
 programmer, with Perl 5 background, there might be some confusion. First,
