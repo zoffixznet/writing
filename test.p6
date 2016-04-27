@@ -1,10 +1,25 @@
-multi trait_mod:<is> (Variable $v, :$from-config!) is export {
-    my $conf = from-json slurp 'test-config.json';
-    my $name = $from-config ~~ Str ?? $from-config !! $v.var.VAR.name.substr: 1;
-    $v.var   = $conf{ $name } // die 'Unknown configuration variable';
+role Better {
+    method better { 'Yes, I am better' }
 }
 
-my $name  is from-config;
-my $input is from-config;
-my $robot is from-config('name');
-say "$robot\'s name is $name and he likes $input";
+class Foo {
+    has $.attr is rw
+}
+
+my $original = Foo.new: :attr<original>;
+
+my $copy = $original but Better;
+$copy.attr = 'meow';
+
+say $original.attr;
+say $copy.attr;
+
+say $copy.better;
+say $original.better; # fatal error: can't find method
+
+# OUTPUT:
+# original
+# meow
+# Yes, I am better
+# Method 'better' not found for invocant of class 'Foo'
+#   in block <unit> at test.p6 line 18
