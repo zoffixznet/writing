@@ -212,7 +212,7 @@ only with `is`.
 
 ## Assign Default Values
 
-You have an app. That app likely has a bunch of configuration. Right? Let's
+Pretend you have an app that has a bunch of configuration. Let's
 create App::Config module that exports a custom trait `is config` to load
 that configuration from a JSON file:
 
