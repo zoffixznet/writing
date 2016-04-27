@@ -1,8 +1,5 @@
-sub trait_mod:<is> (Variable $v, :$double) {
-    return $v does role {
-        method double { self * 2 }
-    };
-}
-
-my Int $x is double = 42;
-say $x.double;
+use App::Config;
+my $name  is config;
+my $input is config;
+my $robot is config('name');
+say "$robot\'s name is $name and he likes $input";
