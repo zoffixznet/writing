@@ -225,7 +225,7 @@ that configuration from a JSON file:
     # ./App/Config.pm6
     1: unit module App::Config;
     2: multi trait_mod:<is> (Variable $v, :$config!) is export {
-    3:     my $conf = from-json slurp '../../test-config.json';
+    3:     my $conf = from-json slurp 'test-config.json';
     4:     my $name = $config ~~ Str ?? $config !! $v.var.VAR.name.substr: 1;
     5:     $v.var   = $conf{ $name } // die 'Unknown configuration variable';
     6: }
