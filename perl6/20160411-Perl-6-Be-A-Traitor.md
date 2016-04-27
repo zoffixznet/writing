@@ -207,9 +207,6 @@ The body is where the magic happens, but keep in mind:
 traits are applied at *compile time*, so some things won't be available to your
 traits.
 
-While we saw traits using verbs other than `is`, custom traits can be created
-only with `is`.
-
 ## Assign Default Values
 
 Imagine you have an app that has a bunch of configuration. Let's
