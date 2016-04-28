@@ -40,7 +40,7 @@ At the end of it all, we aren't getting what we actually want: the version of th
 
 Now that we know that `S///` always works on `$_` and returns the result, it's
 easy to come up with *a whole bunch* of ways that set `$_` to our original
-string and someone gather back the return value of `S///`, but let's look
+string and gather back the return value of `S///`, but let's look
 at just a couple of them:
 
     my $orig = 'meowmix';
@@ -86,7 +86,7 @@ use whitespace liberally and several adverbs can be used at the same time. Here 
 meanings:
 
 * `:g`—(long alternative: `:global`) global match: replace all occurances
-* `:i`—case **i**nsentive match
+* `:i`—case insentive match
 * `:ii`—(long alternative: `:samecase`) preserve case: regardless of the case of letter used as a substitute, the original case of the letter being replaced will be used
 * `:mm`—(long alternative: `:samemark`) preserve mark: in the example above, the diaeresis that was on letter `o` was preserved and applied to the replacement letter `u`
 * `:nth(n)`—replace only `nth` occurance
