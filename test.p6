@@ -1,9 +1,10 @@
-my $orig = 'meowmix';
-my $new = S/me/c/ given $orig;
-say $orig;
-say $new;
-
-my @orig = <meow cow sow vow>;
-my @new = do for @orig { S/\w+ )> 'ow'/w/ };
-say @orig;
-say @new;
+    given 'Lörem Ipsum Dolor Sit Amet' {
+        say S:g      /m/g/;  # Löreg Ipsug Dolor Sit Aget
+        say S:i      /l/b/;  # börem Ipsum Dolor Sit Amet
+        say S:ii     /l/b/;  # Börem Ipsum Dolor Sit Amet
+        say S:samemark     /o/u/;  # Lürem Ipsum Dolor Sit Amet
+        say S:nth(2) /m /g/; # Lörem Ipsug Dolor Sit Amet
+        say S:x(2)   /m /g/; # Löreg Ipsug Dolor Sit Amet
+        say S:ss/Ipsum Dolor/Gipsum\nColor/; # Lörem Gipsum Color Sit Amet
+        say S:g:ii:nth(2) /m/g/; # Lörem Ipsug Dolor Sit Amet
+    }
