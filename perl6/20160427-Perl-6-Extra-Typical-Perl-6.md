@@ -180,7 +180,7 @@ time we augmented `Cool`. So all we have to do is re-compose them with `.^compos
     # False
 
 It worked! All of `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method
-(note: those aren't the only types that inherit `Cool`)! It's both equisitely evil and plesantly awesome.
+(note: those aren't the only types that inherit `Cool`)! This is both equisitely evil and plesantly awesome.
 
 ## Conclusion
 
