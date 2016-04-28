@@ -101,7 +101,8 @@ positional parameter and you can even continue the method chain, with a caveat t
     # TRUE
 
 This does serve as a decent way to add extra functionality to core types. The `$^a` inside our sub's
-definition refers to the first argument and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
+definition refers to the first argument (the object we're making the call on)
+and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
 
 ## *Here Be Dragons*
 
