@@ -1,9 +1,15 @@
-use MONKEY-TYPING;
-augment class Cool {
-    method even { self %% 2 }
-}
+$_ = '42';
+say &('S///');
 
-.^compose for Int, Num, Rat, Str, IntStr, NumStr, RatStr;
+=finish
 
-.say for 72.even, '72'.even, pi.even, ½.even, now.even;
+my $orig = 'meowmix';
+my $new = $orig ~~ S/me/c/;
+say $new;
 
+=finish
+
+my $original = 'foo';
+my $new = S/o/a/ given $original;
+say $original;
+say $new;
