@@ -1,6 +1,6 @@
 # Extra-Typical Perl 6
 
-Have you ever grabbed an [`Int`](http://docs.perl6.org/type/Int) and thought, *"Boy! I should would enjoy having an .even method on it!"* Before you beg the core developers [on IRC](irc://irc.freenode.net/#perl6) to add it to Perl 6, let's review some user-space recourse available to you.
+Have you ever grabbed an [`Int`](http://docs.perl6.org/type/Int) and thought, *"Boy! I sure would enjoy having an .even method on it!"* Before you beg the core developers [on IRC](irc://irc.freenode.net/#perl6) to add it to Perl 6, let's review some user-space recourse available to you.
 
 ## *My Grandpa Left Me a Fortune*
 
@@ -28,7 +28,7 @@ the extra method `even` we want to add. Using such a class requires a bit of ext
 The `my BetterInt $x` part restricts `$x` to contain objects of just `BetterInt` or subclasses. The
 `.= new: 42` in this case is the same as `= BetterInt.new: 42` (it's a shorthand method-call-assign notation, same as `+=` is a shorthand to add to original value).
 
-If we ever want to change the value, we have to do the same `.= new:` trick again to get a `BetterInt` inside of our container or else, we'll get a fatal error.
+If we ever want to change the value, we have to do the same `.= new:` trick again to get a `BetterInt` inside of our container or else we'll get a fatal error.
 The good news, however, is that math operators work just fine on our new
 class, and it's even accepted by anything that wants to have an `Int`. Here's a sub that expects an
 `Int` but happily gobbles up our `BetterInt`:
@@ -43,7 +43,7 @@ class, and it's even accepted by anything that wants to have an `Int`. Here's a 
 
 ## *But... But... But...*
 
-Another option is to mixin a role.
+Another option is to mix in a role.
 The `but` infix operator creates a copy of an object and does just that:
 
     my $x = 42 but role { method even { self %% 2 } };
@@ -87,7 +87,7 @@ This is great and all, but as far as our original goal is concerned, this soluti
     $x = 72;
     say $x.even; # No such method
 
-The role is mixed into our object stored inside the container, so as soon as we put a new value into the container, or fancy-pants `.even` method is gone, unless we mixin the role again.
+The role is mixed into our object stored inside the container, so as soon as we put a new value into the container, our fancy-pants `.even` method is gone, unless we mix in the role again.
 
 ## *Sub it in*
 
@@ -102,13 +102,14 @@ positional parameter and you can even continue the method chain, with a caveat t
 
 This does serve as a decent way to add extra functionality to core types. The `$^a` inside our sub's
 definition refers to the first parameter (the object we're making the call on)
-and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
+and the entire sub can be written differently as `sub ($x) { $x %% 2 }`. And,
+of course, your sub-now-method can take arguments too.
 
 ## *Here Be Dragons*
 
 The docs for what I'm about to describe contain words "don't do this" at the beggining. No matter what
 [the JavaScript folks might tell you](http://shop.oreilly.com/product/9780596517748.do), augmenting native
-types is dangerous, because you're affecting *all* parts of your program. **Even modules that don't
+types is dangerous, because you're affecting *all* parts of your program—**even modules that don't
 see your augmentation.**
 
 Now that I have the right to tell you 'I told you so' when the nuclear plant you work at melts down, let's see some code:
@@ -184,9 +185,7 @@ It worked! Now `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types have an `.even
 
 ## Conclusion
 
-When extending functionality of Perl 6's core types or any other class, you have several options. You can use a subclass with `is Class`. You can mixin a role with `but Role`. You can call subroutines as
+When extending functionality of Perl 6's core types or any other class, you have several options. You can use a subclass with `is Class`. You can mix in a role with `but Role`. You can call subroutines as
 methods with `$object.&sub`. Or you can come to the dark side and use augmentation.
 
 Perl 6—There Is More Than One Way To Extend it.
-
-    
