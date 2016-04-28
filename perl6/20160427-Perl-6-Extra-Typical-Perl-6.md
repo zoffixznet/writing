@@ -106,7 +106,7 @@ and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
 
 ## *Here Be Dragons*
 
-The docs for what I'm about to describe contain words `don't do this` at the start. No matter what
+The docs for what I'm about to describe contain words `don't do this` at the beggining. No matter what
 [the JavaScript folks might tell you](http://shop.oreilly.com/product/9780596517748.do), augmenting native
 types is dangerous, because you're affecting *all* parts of your program. **Even modules that don't
 see your augmentation.**
@@ -141,7 +141,7 @@ All of the action is happening inside `Bar.pm6`. First, we have to write a `use 
 to indicate we want to *augment* the existing class. Our augmentation adds method `even` that tells whether
 the Int is an even number.
 
-Now, let's look at the whole program. We have module `Foo` that gives us one sub that simply prints the result of a call of `.even` on `42` (which is an `Int`). We `use` `Foo` BEFORE we use `Bar`—the module with our augmentation. Lastly, in our script, we call method `.even` on an `Int` and then make a call to the sub exported by `Foo`.
+Now, let's look at the whole program. We have module `Foo` that gives us one sub that simply prints the result of a call of `.even` on `42` (which is an `Int`). We `use` `Foo` BEFORE we use `Bar`, the module with our augmentation. Lastly, in our script, we call method `.even` on an `Int` and then make a call to the sub exported by `Foo`.
 
 The scary thing? It all works! Both `72` in our main script and `42` inside the sub in `Foo` now have method `.even`, all thanks to our augmentation we performed inside `Bar.pm6`. We got what we wanted originally, but it's a dangerous method to use.
 
