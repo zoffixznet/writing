@@ -1,25 +1,9 @@
-role Better {
-    method better { 'Yes, I am better' }
+use MONKEY-TYPING;
+augment class Cool {
+    method even { self %% 2 }
 }
 
-class Foo {
-    has $.attr is rw
-}
+.^compose for Int, Num, Rat, Str, IntStr, NumStr, RatStr;
 
-my $original = Foo.new: :attr<original>;
+.say for 72.even, '72'.even, pi.even, ½.even;
 
-my $copy = $original but Better;
-$copy.attr = 'meow';
-
-say $original.attr;
-say $copy.attr;
-
-say $copy.better;
-say $original.better; # fatal error: can't find method
-
-# OUTPUT:
-# original
-# meow
-# Yes, I am better
-# Method 'better' not found for invocant of class 'Foo'
-#   in block <unit> at test.p6 line 18
