@@ -92,7 +92,7 @@ The role is mixed into our object stored inside the container, so as soon as we 
 ## *Sub it in*
 
 Did you know you can call subs as methods? It's pretty neat! You receive the object as the first
-positional parameter and you can even continue the method chain, with a caveat that you can't break up those chains onto multiple lines:
+positional parameter and you can even continue the method chain, with a caveat that you can't break up those chains onto multiple lines if the &sub method call doesn't remain on the first line:
 
     sub even { $^a %% 2 };
     say 42.&even.uc;
