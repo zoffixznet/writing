@@ -179,12 +179,12 @@ time we augmented `Cool`. So, to make it work we have to re-compose them with `.
     # False
     # False
 
-It worked! Now `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method
+It worked! Now `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types have an `.even` method
 (note: those aren't the only types that inherit `Cool`)! This is both equisitely evil and plesantly awesome.
 
 ## Conclusion
 
-When extending functionality of Perl 6's core types or any other object, you have several options. You can use a subclass with `is Class`. You can mixin a role with `but Role`. You can call subroutines as
+When extending functionality of Perl 6's core types or any other class, you have several options. You can use a subclass with `is Class`. You can mixin a role with `but Role`. You can call subroutines as
 methods with `$object.&sub`. Or you can come to the dark side and use augmentation.
 
 Perl 6—There Is More Than One Way To Extend it.
