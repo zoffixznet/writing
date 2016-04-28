@@ -179,8 +179,8 @@ time we augmented `Cool`. So all we have to do is re-compose them with `.^compos
     # False
     # False
 
-It worked! All of `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method! It's both
-equisitely evil and plesantly awesome.
+It worked! All of `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method
+(note: those aren't the only types that inherit `Cool`)! It's both equisitely evil and plesantly awesome.
 
 ## Conclusion
 
