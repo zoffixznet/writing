@@ -1,6 +1,6 @@
 # Extra-Typical Perl 6
 
-Have you ever grabbed an [`Int`](http://docs.perl6.org/type/Int) and thought, "Boy! I should would enjoy having an .even method on it!" Before you beg the core developers [on IRC](irc://irc.freenode.net/#perl6) to add it to Perl 6, let's review some user-space recourse available to you.
+Have you ever grabbed an [`Int`](http://docs.perl6.org/type/Int) and thought, *"Boy! I should would enjoy having an .even method on it!"* Before you beg the core developers [on IRC](irc://irc.freenode.net/#perl6) to add it to Perl 6, let's review some user-space recourse available to you.
 
 ## *My Grandpa Left Me a Fortune*
 
@@ -24,11 +24,12 @@ One way to go is to define your own custom Int-like class that knows how do perf
     # 113
 
 We created a `BetterInt` class and inherited from `Int` using `is Int` trait. The class body has just
-the extra method `even` we want to add. Using such a class requires a bit of extra cruft, however.
+the extra method `even` we want to add. Using such a class requires a bit of extra code, however.
 The `my BetterInt $x` part restricts `$x` to contain objects of just `BetterInt` or subclasses. The
-`.= new: 42` in this case is the same as `= BetterInt.new: 42` (it's a shorthand method-call-assign notation, same as `+=` adds to original value).
+`.= new: 42` in this case is the same as `= BetterInt.new: 42` (it's a shorthand method-call-assign notation, same as `+=` is a shorthand to add to original value).
 
-If we ever want to change the value, we have to do the same `.= new:` trick again to get a `BetterInt` inside of our container. The good news, however, is that math operators work just fine on our new
+If we ever want to change the value, we have to do the same `.= new:` trick again to get a `BetterInt` inside of our container or else, we'll get a fatal error.
+The good news, however, is that math operators work just fine on our new
 class, and it's even accepted by anything that wants to have an `Int`. Here's a sub that expects an
 `Int` but happily gobbles up our `BetterInt`:
 
@@ -42,7 +43,8 @@ class, and it's even accepted by anything that wants to have an `Int`. Here's a 
 
 ## *But... But... But...*
 
-The `but` infix operators creates a copy of an object and mixes in a given role:
+Another option is to mixin a role.
+The `but` infix operator creates a copy of an object and does just that:
 
     my $x = 42 but role { method even { self %% 2 } };
     say $x.even;
@@ -50,7 +52,7 @@ The `but` infix operators creates a copy of an object and mixes in a given role:
     # OUTPUT:
     # True
 
-The role doesn't have to be inlined, of course. Here's another example with a pre-defined role that also shows that our object is indeed a copy:
+The role doesn't have to be inlined, of course. Here's another example that uses a pre-defined role and also shows that our object is indeed a copy:
 
     role Better {
         method better { 'Yes, I am better' }
@@ -85,11 +87,12 @@ This is great and all, but as far as our original goal is concerned, this soluti
     $x = 72;
     say $x.even; # No such method
 
-The role is mixed into our object stored inside the container, so as soon as we put a new value into the container, or fancy-pants `.even` method is gone.
+The role is mixed into our object stored inside the container, so as soon as we put a new value into the container, or fancy-pants `.even` method is gone, unless we mixin the role again.
 
 ## *Sub it in*
 
-Did you know you can call subs as methods? It's pretty neat and you can even continue the method chain:
+Did you know you can call subs as methods? It's pretty neat! You receive the object as the first
+positional parameter and you can even continue the method chain, with a caveat that you can't break up those chains onto multiple lines:
 
     sub even { $^a %% 2 };
     say 42.&even.uc;
@@ -97,8 +100,7 @@ Did you know you can call subs as methods? It's pretty neat and you can even con
     # OUTPUT:
     # TRUE
 
-Just one caveat: you can't break up method chains containing these calls onto multiple lines. This
-does serve as a decent method to add extra functionality to core types. The `$^a` inside our sub's
+This does serve as a decent way to add extra functionality to core types. The `$^a` inside our sub's
 definition refers to the first argument and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
 
 ## *Here Be Dragons*
