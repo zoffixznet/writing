@@ -3,7 +3,7 @@
 Coming from a Perl 5 background, my first experience with Perl 6's non-destructive substitution operator `S///` looked something like this:
 
 <p style="text-align: center">
-    <small><i>(artist's impression)</i></small>
+    <small><i>(artist's impression)</i></small><br>
     <img src="stock/20160428-Substitutions.gif" style="display: block; margin: 20px auto;">
 </p>
 
@@ -31,7 +31,7 @@ So what's actually happening in the example above:
 * By the time we get to `S///`, `$orig` is aliased to `$_`
 * The `S///` non-destructively executes substitution on `$_` and **returns the resulting string**. This is what the smartmatch will operate on
 * The smartmatch, following the [rules](http://docs.perl6.org/routine/~~) for
-mach of `Str` against `Str`, will give `True` or `False` depending on whether
+match of `Str` against `Str`, will give `True` or `False` depending on whether
 substitution happened (`True`, confusingly, meaning it didn't)
 
 At the end of it all, we aren't getting what we actually want: the version of the string with substitution applied.
@@ -60,7 +60,7 @@ at just a couple of them:
     # [wow wow wow wow]
 
 The first one operates on a single value. We use the postfix form of the
-`given` block, which lets us avoid the curlies. From the output, you can see the original string remained intact.
+`given` block, which lets us avoid the curlies (you can use `with` in place of `given` with the same results). From the output, you can see the original string remained intact.
 
 The second example operates on a whole bunch of strings from an `Array` and we
 use the `do` keyword to execute a regular `for` loop (that aliases to `$_` in this case) and assign the result to the `@new` array. Again, the output shows
@@ -81,7 +81,7 @@ The `S///` operator—just like `s///` and some methods—lets you use regex adv
         say S:g:ii:nth(2) /m/g/; # Lörem Ipsug Dolor Sit Amet
     }
 
-As you can see, they are in the form of `:foo` that is added after `S` part of the operator. You can
+As you can see, they are in the form of `:foo` that is added after the `S` part of the operator. You can
 use whitespace liberally and several adverbs can be used at the same time. Here are their
 meanings:
 
