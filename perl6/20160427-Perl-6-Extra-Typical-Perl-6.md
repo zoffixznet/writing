@@ -4,7 +4,7 @@ Have you ever grabbed an [`Int`](http://docs.perl6.org/type/Int) and thought, *"
 
 ## *My Grandpa Left Me a Fortune*
 
-One way to go is to define your own custom Int-like class that knows how do perform the `.even` method. You don't have to reinvent the wheel, just *inherit* from the `Int` type. You can mix and match core Perl 6 types and roles any way that pleases you.
+One way to go is to define your own custom Int-like class that knows how to perform the `.even` method. You don't have to reinvent the wheel, just *inherit* from the `Int` type. You can mix and match core Perl 6 types and roles any way that pleases you.
 
     class BetterInt is Int {
         method even { self %% 2 }
@@ -101,12 +101,12 @@ positional parameter and you can even continue the method chain, with a caveat t
     # TRUE
 
 This does serve as a decent way to add extra functionality to core types. The `$^a` inside our sub's
-definition refers to the first argument (the object we're making the call on)
+definition refers to the first parameter (the object we're making the call on)
 and the entire sub can be written as `sub ($x) { $x %% 2 }` too.
 
 ## *Here Be Dragons*
 
-The docs for what I'm about to describe contain words `don't do this` at the beggining. No matter what
+The docs for what I'm about to describe contain words "don't do this" at the beggining. No matter what
 [the JavaScript folks might tell you](http://shop.oreilly.com/product/9780596517748.do), augmenting native
 types is dangerous, because you're affecting *all* parts of your program. **Even modules that don't
 see your augmentation.**
@@ -162,7 +162,7 @@ If you're still reading this, that means you're not above messing everything up,
 
 Oops. That didn't work, did it? As soon as we hit our first attempt to call `.even` (on `Int` 72), the
 program crashed. The reason for that is all the types that derive from `Cool` were already composed by the
-time we augmented `Cool`. So all we have to do is re-compose them with `.^compose` Meta Object Protocol method:
+time we augmented `Cool`. So, to make it work we have to re-compose them with `.^compose` Meta Object Protocol method:
 
     use MONKEY-TYPING;
     augment class Cool {
@@ -179,7 +179,7 @@ time we augmented `Cool`. So all we have to do is re-compose them with `.^compos
     # False
     # False
 
-It worked! All of `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method
+It worked! Now `Int, Num, Rat, Str, IntStr, NumStr, RatStr` types now have an `.even` method
 (note: those aren't the only types that inherit `Cool`)! This is both equisitely evil and plesantly awesome.
 
 ## Conclusion
