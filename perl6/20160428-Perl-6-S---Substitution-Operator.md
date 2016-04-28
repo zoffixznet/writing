@@ -13,16 +13,16 @@ You'll fare better, I'm sure. Not only have the error messages improved, but I'l
 
 The reason I had issues is because, seeing familiar-looking operators, I
 simply translated Perl 5's *binding* operator (`=~`) to Perl 6's
-*smartmatch* operator (`~~`) and expected things to work. The `S///` was not documented and, combined with the confusing (at the time) error message, this was the source of my pain:
+*smartmatch* operator (`~~`) and expected things to work. The `S///` was not documented and, combined with the confusing (at the time) warning message, this was the source of my pain:
 
     my $orig = 'meowmix';
     my $new = $orig ~~ S/me/c/;
     say $new;
 
-    # OUTPUT error:
+    # OUTPUT warning:
     # Smartmatch with S/// can never succeed
 
-The old error suggests the `~~` operator is the wrong choice here and it is.
+The old warning suggests the `~~` operator is the wrong choice here and it is.
 The `~~` isn't the equivalent of Perl 5's `=~`. It aliases the left hand side
 to `$_`, evaluates the right hand side, and then calls `.ACCEPTS($_)` on it. That is all there is to its magic.
 
