@@ -29,7 +29,7 @@ to `$_`, evaluates the right hand side, and then calls `.ACCEPTS($_)` on it. Tha
 So what's actually happening in the example above:
 
 * By the time we get to `S///`, `$orig` is aliased to `$_`
-* The `S///` non-destructively executes substitution on `$_` and **returns the resulting string**
+* The `S///` non-destructively executes substitution on `$_` and **returns the resulting string**. This is what the smartmatch will operate on
 * The smartmatch, following the [rules](http://docs.perl6.org/routine/~~) for
 mach of `Str` against `Str`, will give `True` or `False` depending on whether
 substitution happened (`True`, confusingly, meaning it didn't)
