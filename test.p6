@@ -1,5 +1,4 @@
-use v6;
-
+use experimental :cached;
 sub nth-prime(Int:D $x where * > 0) is cached {
     say "Calculating {$x}th prime";
     return (2..*).grep(*.is-prime)[$x - 1];

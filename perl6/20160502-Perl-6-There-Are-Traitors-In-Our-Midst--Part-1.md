@@ -195,7 +195,11 @@ or, for example, restricting elements of an array to a particular type.
 
 This isn't an exhaustive list of
 [traits in Rakudo Perl 6 compiler](https://github.com/rakudo/rakudo/blob/nom/src/core/traits.pm), but these are the traits you'll likely use most often in your programs. Unmentioned are
-[`is DEPRECATED`](http://docs.perl6.org/routine/is%20DEPRECATED) to mark subs as deprecated, there's [`is default`](http://docs.perl6.org/routine/is%20default) that lets variables have a different value when they contain a `Nil`,
+[`is DEPRECATED`](http://docs.perl6.org/routine/is%20DEPRECATED) to mark subs as deprecated, there's [`is default`](http://docs.perl6.org/routine/is%20default) that lets variables have a different value when they contain a `Nil`, and there's even a currently-experimental
+[`is cached`](http://docs.perl6.org/routine/is%20cached) trait that caches sub return values.
+
+Traits are prevalent in Perl 6 code and it's important to understand how to use them. In Part 2, we'll also learn how to create your very own custom
+traits.
 
 ----
 
