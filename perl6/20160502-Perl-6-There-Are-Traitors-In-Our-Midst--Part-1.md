@@ -91,11 +91,17 @@ parameter inside the sub.
 Your classes' *public* attributes are read-only by default. By simply applying
 the `is rw` trait, you can let the users of your class assign values to the
 attribute after the object has been created. Keep in mind: this is only
-relevant for the public interface; inside the class, you can still modify
-the values of even the read-only attributes using the `$!` twigil
+relevant to the public interface; inside the class, you can still modify
+the values of even read-only attributes using the `$!` twigil
 (i.e. `$!bar = 42`).
 
 #### LHS subroutines/methods
+
+The `is rw` trait applied to attibutes, as you've seen in previous section,
+is just syntax sugar for automatically creating a private attribute and
+a method for it. Notice, in the code below we applied `is rw` trait on the
+*method*. This makes it return the writable container the caller can use to
+assign to:
 
     class Foo {
         has $!bar;
@@ -103,24 +109,19 @@ the values of even the read-only attributes using the `$!` twigil
     }
     Foo.new.bar = 42;
 
-    sub postcircumfix:<❨  ❩> ($before, $inside) is rw {
+In the same manner, we can create subroutines that can be used on the left
+hand side and be assigned to. In the following example, we create a
+custom postcircumfix operator (which is just a special sub) for using
+fancy-pants "parentheses" to do hash look ups. The `is rw` trait makes it
+possible to assign a new value to a hash key:
+
+    sub postcircumfix:<᚜  ᚛> ($before, $inside) is rw {
         $before{$inside};
     }
     my %hash = :foo<bar>;
-    %hash❨'foo'❩ = 42;
+    %hash᚜'foo'᚛ = 42;
     say %hash<foo>
 
-The `is rw` trait applied to attibutes, as you've seen in previous section,
-is just syntax sugar for automatically creating a private attribute and
-a method for it. Notice, in the code above we applied `is rw` trait on the
-*method*. This makes it return the writable container the caller can use to
-assign to.
-
-In the same manner, we can create subroutines that can be used on the left
-hand side and be assigned to. A semi-elaborate example above creates a
-custom operator (which is just a special sub) for using fancy-pants parentheses
-to do hash look ups. The `is rw` trait makes it possible to assign to a
-hash.
 
 NOTE: if you use explicit `return` in your sub, the `is rw` trait won't work.
 What you're supposed to be using is for this is `return-rw` keyword instead,
