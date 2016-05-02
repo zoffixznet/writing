@@ -28,11 +28,11 @@ take a look some of the oft-used:
     use Foo :ALL; # both foo() and bar() available for use
 
 The `is export` trait makes your things automatically exported, for use by
-other packages using yours. You can also create categories by giving a named
+other packages that use yours. You can also create categories by giving a named
 argument to `export()`. That argument can be specified when `use`ing your
 module to export that specific category. Three predefined categories exist:
 `:ALL` that exports all of `is export` symbols, `:DEFAULT` that exports those
-with bare `is export` without arguments, and `:MANDATORY` marks symbols that will be export regardless of what argument is given during `use`.
+with bare `is export` without arguments, and `:MANDATORY` marks symbols that will be exported regardless of what argument is given during `use`.
 
 Of course, you can export constants, variables, and classes too:
 
@@ -45,6 +45,11 @@ directly if you need more control.
 
 ## `is copy`
 
+When your subroutine or method recieves parameters, they are read-only. Any
+attempt to modify them will result in a fatal error. At times when you do
+wish to fiddle with them, simply apply `is copy` trait to them in the
+signature:
+
     sub foo ($x is copy) { $x = 42; }
     sub bar ($x        ) { $x = 42; }
 
@@ -52,10 +57,7 @@ directly if you need more control.
     foo $original; # works; $original is still 72
     bar $original; # fatal error;
 
-When your subroutine or method recieves parameters, they are read-only. Any
-attempt to modify them will result in a fatal error. At times when you do
-wish to fiddle with them, simply apply `is copy` trait to them in the
-signature. And don't worry, that won't affect the caller's data. To do that,
+And don't worry, that won't affect the caller's data. To do that,
 you'll need the `is rw` trait...
 
 ## `is rw`
@@ -189,6 +191,6 @@ The `of` trait gets an honourable mention. It's used in
 [creation of subsets](http://blogs.perl.org/users/zoffix_znet/2016/04/perl-6-types-made-for-humans.html)
 or, for example, restricting elements of an array to a particular type.
 
-##
+----
 
 *Oi, Matey! Seems th' traitors be way more advanced than us 'n their code be much cleaner, powerful, 'n beautiful! It'd be suicide to be off against all 'o them! ye still want that spiced rum? Find out how we could use th' trators' methods 'n improve upon them! Do that 'n a chest 'o gold gunna be yours, as well as th' hooch!*
