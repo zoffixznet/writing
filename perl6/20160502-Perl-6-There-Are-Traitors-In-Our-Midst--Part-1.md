@@ -159,8 +159,7 @@ you use `is`, they simply [get punned](http://docs.perl6.org/language/objects#Au
 
 Using `is` keyword followed by a Type or Class inherits from them. The `Meow`
 class constructed above is itself empty, but due to inherting from `Int` type
-takes an integer and provides [all of `Int` methods](http://docs.perl6.org/type/Int). We also get method `zop`, which is provided by `Foo` class in
-this case. And despite both roles providing it too, we don't get any errors,
+takes an integer and provides [all of `Int` methods](http://docs.perl6.org/type/Int). We also get method `zop`, which is provided by punned role `Foo` in this case. And despite both roles providing it too, we don't get any errors,
 because those roles got punned.
 
 ## `does`
