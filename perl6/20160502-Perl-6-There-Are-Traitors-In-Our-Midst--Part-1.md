@@ -112,8 +112,8 @@ assign to:
 In the same manner, we can create subroutines that can be used on the left
 hand side and be assigned to. In the following example, we create a
 custom postcircumfix operator (which is just a special sub) for using
-fancy-pants "parentheses" to do hash look ups. The `is rw` trait makes it
-possible to assign a new value to a hash key:
+fancy-pants "parentheses" to do hash look ups. The `is rw` trait makes the sub
+return a writable container which lets us assign a new value to a hash key:
 
     sub postcircumfix:<᚜  ᚛> ($before, $inside) is rw {
         $before{$inside};
@@ -130,6 +130,10 @@ and if you do use it, `is rw` trait is not needed.
 
 ## `is required`
 
+As the name suggests, `is required` trait marks class attributes and
+named parameters as mandatory. If those are not provided at object
+instantiation or method/sub call, a fatal error will be thrown:
+
     class Foo {
         has $.bar is required;
     }
@@ -137,10 +141,6 @@ and if you do use it, `is rw` trait is not needed.
 
     sub foo ( :$bar is required ) { }
     foo; # fatal error, asks for $bar named arg
-
-As the name suggests, `is required` trait marks class attributes and
-named parameters as mandatory. If those are not provided at object
-instantiation or method/sub call, a fatal error will be thrown.
 
 ## `is Type/Class/Role`
 
