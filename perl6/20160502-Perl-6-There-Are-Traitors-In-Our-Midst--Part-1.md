@@ -202,4 +202,4 @@ This isn't an exhaustive list of
 
 *Oi, Matey! Seems th' traitors be way more advanced than us 'n their code be much cleaner, powerful, 'n beautiful! It'd be suicide to be off against all 'o them! ye still want that spiced rum? Find out how we could use th' trators' methods 'n improve upon them! Do that 'n a chest 'o gold gunna be yours, as well as th' hooch!*
 
-*To be continued*
+To be continued
