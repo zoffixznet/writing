@@ -159,7 +159,7 @@ you use `is`, they simply [get punned](http://docs.perl6.org/language/objects#Au
 
 Using `is` keyword followed by a Type or Class inherits from them. The `Meow`
 class constructed above is itself empty, but due to inherting from `Int` type
-takes an integer and provides [all of `Int` methods](http://docs.perl6.org/type/Int). We also get method `zop`, which is provided by punned role `Foo`. And despite both roles providing it too, we don't get any errors,
+takes an integer and provides [all of `Int` methods](http://docs.perl6.org/type/Int). We also get method `zop`, which is provided by the punned role `Foo`. And despite both roles providing it too, we don't get any errors,
 because those roles got punned.
 
 ## `does`
@@ -190,6 +190,12 @@ to compose roles.
 The `of` trait gets an honourable mention. It's used in
 [creation of subsets](http://blogs.perl.org/users/zoffix_znet/2016/04/perl-6-types-made-for-humans.html)
 or, for example, restricting elements of an array to a particular type.
+
+## Conclusion
+
+This isn't an exhaustive list of
+[traits in Rakudo Perl 6 compiler](https://github.com/rakudo/rakudo/blob/nom/src/core/traits.pm), but these are the traits you'll likely use most often in your programs. Unmentioned are
+[`is DEPRECATED`](http://docs.perl6.org/routine/is%20DEPRECATED) to mark subs as deprecated, there's [`is default`](http://docs.perl6.org/routine/is%20default) that lets variables have a different value when they contain a `Nil`,
 
 ----
 
